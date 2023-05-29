@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - Softball blog</title>
+        {% else %}
+        <title>Welcome to Remy Softball Site</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>
+            Softball blog: 
+            <a href="/index">Home</a>
+            <a href="/login">Login</a>
+        </div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>
