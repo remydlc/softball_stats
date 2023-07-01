@@ -1,10 +1,4 @@
-2023-06-18 20:11:28,536 INFO: Microblog startup [in /Users/remydlc/workspace/python/softball_stat/app/__init__.py:52]
-2023-06-22 20:26:19,669 INFO: Microblog startup [in /Users/remydlc/workspace/python/softball_stat/app/__init__.py:54]
-2023-06-22 20:26:22,991 INFO: Microblog startup [in /Users/remydlc/workspace/python/softball_stat/app/__init__.py:54]
-2023-06-23 12:39:42,949 INFO: Microblog startup [in /Users/remydlc/workspace/python/softball_stat/app/__init__.py:54]
-2023-06-23 12:58:23,267 INFO: Microblog startup [in /Users/remydlc/workspace/python/softball_stat/app/__init__.py:56]
-2023-06-23 13:02:50,396 INFO: Microblog startup [in /Users/remydlc/workspace/python/softball_stat/app/__init__.py:56]
-2023-06-23 16:40:39,176 ERROR: Exception on /login [GET] [in /Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py:1457]
+2023-06-24 11:49:28,941 ERROR: Exception on / [GET] [in /Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py:1457]
 Traceback (most recent call last):
   File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py", line 2073, in wsgi_app
     response = self.full_dispatch_request()
@@ -18,9 +12,12 @@ Traceback (most recent call last):
   File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py", line 1502, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/remydlc/workspace/python/softball_stat/app/routes.py", line 25, in login
-    user = User.query.filter_by(username=form.username.data).first()
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/remydlc/workspace/python/softball_stat/app/routes.py", line 54, in index
+    return render_template(
+           ^^^^^^^^^^^^^^^^
   File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/templating.py", line 147, in render_template
     return _render(
            ^^^^^^^^
@@ -31,24 +28,25 @@ Traceback (most recent call last):
     self.environment.handle_exception()
   File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/jinja2/environment.py", line 925, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "/Users/remydlc/workspace/python/softball_stat/app/templates/login.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "/Users/remydlc/workspace/python/softball_stat/app/templates/base.html", line 30, in top-level template code
-    {% block content %}{% endblock %}
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
     ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/remydlc/workspace/python/softball_stat/app/templates/login.html", line 28, in block 'content'
-    <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/base.html", line 36, in top-level template code
+    {% block content %}
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/base.html", line 47, in block 'content'
+    {% block app_content %}{% endblock %}
     ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/helpers.py", line 338, in url_for
-    return appctx.app.handle_url_build_error(error, endpoint, values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/helpers.py", line 325, in url_for
-    rv = url_adapter.build(
-         ^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/werkzeug/routing.py", line 2315, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'reset_password_request'. Did you mean 'edit_profile' instead?
-2023-06-23 16:40:42,281 ERROR: Exception on /login [GET] [in /Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py:1457]
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/index.html", line 11, in block 'app_content'
+    {% include '_post.html' %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/_post.html", line 7, in top-level template code
+    said {{ moment(post.timestamp).fromNow() }}:
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/jinja2/utils.py", line 84, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'moment' is undefined
+2023-06-24 11:51:07,397 ERROR: Exception on / [GET] [in /Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py:1457]
 Traceback (most recent call last):
   File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py", line 2073, in wsgi_app
     response = self.full_dispatch_request()
@@ -62,9 +60,12 @@ Traceback (most recent call last):
   File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py", line 1502, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/remydlc/workspace/python/softball_stat/app/routes.py", line 25, in login
-    user = User.query.filter_by(username=form.username.data).first()
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/remydlc/workspace/python/softball_stat/app/routes.py", line 54, in index
+    return render_template(
+           ^^^^^^^^^^^^^^^^
   File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/templating.py", line 147, in render_template
     return _render(
            ^^^^^^^^
@@ -75,20 +76,69 @@ Traceback (most recent call last):
     self.environment.handle_exception()
   File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/jinja2/environment.py", line 925, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "/Users/remydlc/workspace/python/softball_stat/app/templates/login.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "/Users/remydlc/workspace/python/softball_stat/app/templates/base.html", line 30, in top-level template code
-    {% block content %}{% endblock %}
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
     ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/remydlc/workspace/python/softball_stat/app/templates/login.html", line 28, in block 'content'
-    <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/base.html", line 36, in top-level template code
+    {% block content %}
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/base.html", line 47, in block 'content'
+    {% block app_content %}{% endblock %}
     ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/helpers.py", line 338, in url_for
-    return appctx.app.handle_url_build_error(error, endpoint, values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/helpers.py", line 325, in url_for
-    rv = url_adapter.build(
-         ^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/werkzeug/routing.py", line 2315, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'reset_password_request'. Did you mean 'edit_profile' instead?
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/index.html", line 11, in block 'app_content'
+    {% include '_post.html' %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/_post.html", line 7, in top-level template code
+    said {{ moment(post.timestamp).fromNow() }}:
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/jinja2/utils.py", line 84, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'moment' is undefined
+2023-06-24 11:51:34,088 ERROR: Exception on / [GET] [in /Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py:1457]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/remydlc/workspace/python/softball_stat/app/routes.py", line 54, in index
+    return render_template(
+           ^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+           ^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/jinja2/environment.py", line 1291, in render
+    self.environment.handle_exception()
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/base.html", line 36, in top-level template code
+    {% block content %}
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/base.html", line 47, in block 'content'
+    {% block app_content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/index.html", line 11, in block 'app_content'
+    {% include '_post.html' %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/_post.html", line 7, in top-level template code
+    said {{ moment(post.timestamp).fromNow() }}:
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/jinja2/utils.py", line 84, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'moment' is undefined

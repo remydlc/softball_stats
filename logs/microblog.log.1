@@ -1,4 +1,4 @@
-2023-06-23 16:40:42,654 ERROR: Exception on /login [GET] [in /Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py:1457]
+2023-06-24 11:51:42,802 ERROR: Exception on /index [GET] [in /Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py:1457]
 Traceback (most recent call last):
   File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py", line 2073, in wsgi_app
     response = self.full_dispatch_request()
@@ -12,9 +12,12 @@ Traceback (most recent call last):
   File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py", line 1502, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/remydlc/workspace/python/softball_stat/app/routes.py", line 25, in login
-    user = User.query.filter_by(username=form.username.data).first()
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/remydlc/workspace/python/softball_stat/app/routes.py", line 54, in index
+    return render_template(
+           ^^^^^^^^^^^^^^^^
   File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/templating.py", line 147, in render_template
     return _render(
            ^^^^^^^^
@@ -25,24 +28,26 @@ Traceback (most recent call last):
     self.environment.handle_exception()
   File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/jinja2/environment.py", line 925, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "/Users/remydlc/workspace/python/softball_stat/app/templates/login.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "/Users/remydlc/workspace/python/softball_stat/app/templates/base.html", line 30, in top-level template code
-    {% block content %}{% endblock %}
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
     ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/remydlc/workspace/python/softball_stat/app/templates/login.html", line 28, in block 'content'
-    <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/base.html", line 36, in top-level template code
+    {% block content %}
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/base.html", line 47, in block 'content'
+    {% block app_content %}{% endblock %}
     ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/helpers.py", line 338, in url_for
-    return appctx.app.handle_url_build_error(error, endpoint, values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/helpers.py", line 325, in url_for
-    rv = url_adapter.build(
-         ^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/werkzeug/routing.py", line 2315, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'reset_password_request'. Did you mean 'edit_profile' instead?
-2023-06-23 16:40:47,660 ERROR: Exception on /login [GET] [in /Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py:1457]
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/index.html", line 11, in block 'app_content'
+    {% include '_post.html' %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/_post.html", line 7, in top-level template code
+    said {{ moment(post.timestamp).fromNow() }}:
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/jinja2/utils.py", line 84, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'moment' is undefined
+2023-06-24 11:52:08,540 INFO: Microblog startup [in /Users/remydlc/workspace/python/softball_stat/app/__init__.py:58]
+2023-06-24 11:52:10,596 ERROR: Exception on /index [GET] [in /Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py:1457]
 Traceback (most recent call last):
   File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py", line 2073, in wsgi_app
     response = self.full_dispatch_request()
@@ -56,9 +61,12 @@ Traceback (most recent call last):
   File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py", line 1502, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/remydlc/workspace/python/softball_stat/app/routes.py", line 25, in login
-    user = User.query.filter_by(username=form.username.data).first()
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/remydlc/workspace/python/softball_stat/app/routes.py", line 54, in index
+    return render_template(
+           ^^^^^^^^^^^^^^^^
   File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/templating.py", line 147, in render_template
     return _render(
            ^^^^^^^^
@@ -69,24 +77,18 @@ Traceback (most recent call last):
     self.environment.handle_exception()
   File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/jinja2/environment.py", line 925, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "/Users/remydlc/workspace/python/softball_stat/app/templates/login.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "/Users/remydlc/workspace/python/softball_stat/app/templates/base.html", line 30, in top-level template code
-    {% block content %}{% endblock %}
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
     ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/remydlc/workspace/python/softball_stat/app/templates/login.html", line 28, in block 'content'
-    <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/helpers.py", line 338, in url_for
-    return appctx.app.handle_url_build_error(error, endpoint, values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/helpers.py", line 325, in url_for
-    rv = url_adapter.build(
-         ^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/werkzeug/routing.py", line 2315, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'reset_password_request'. Did you mean 'edit_profile' instead?
-2023-06-23 16:41:07,718 ERROR: Exception on /login [GET] [in /Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py:1457]
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/base.html", line 51, in top-level template code
+    {% block scripts %}
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/base.html", line 52, in block 'scripts'
+    {{ super() }}
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/jinja2/utils.py", line 84, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: there is no parent block called 'scripts'.
+2023-06-24 11:52:11,709 ERROR: Exception on /index [GET] [in /Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py:1457]
 Traceback (most recent call last):
   File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py", line 2073, in wsgi_app
     response = self.full_dispatch_request()
@@ -100,9 +102,12 @@ Traceback (most recent call last):
   File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py", line 1502, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/remydlc/workspace/python/softball_stat/app/routes.py", line 25, in login
-    user = User.query.filter_by(username=form.username.data).first()
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/remydlc/workspace/python/softball_stat/app/routes.py", line 54, in index
+    return render_template(
+           ^^^^^^^^^^^^^^^^
   File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/templating.py", line 147, in render_template
     return _render(
            ^^^^^^^^
@@ -113,20 +118,15 @@ Traceback (most recent call last):
     self.environment.handle_exception()
   File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/jinja2/environment.py", line 925, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "/Users/remydlc/workspace/python/softball_stat/app/templates/login.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "/Users/remydlc/workspace/python/softball_stat/app/templates/base.html", line 30, in top-level template code
-    {% block content %}{% endblock %}
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
     ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/remydlc/workspace/python/softball_stat/app/templates/login.html", line 28, in block 'content'
-    <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/helpers.py", line 338, in url_for
-    return appctx.app.handle_url_build_error(error, endpoint, values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/helpers.py", line 325, in url_for
-    rv = url_adapter.build(
-         ^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/werkzeug/routing.py", line 2315, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'reset_password_request'. Did you mean 'edit_profile' instead?
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/base.html", line 51, in top-level template code
+    {% block scripts %}
+  File "/Users/remydlc/workspace/python/softball_stat/app/templates/base.html", line 52, in block 'scripts'
+    {{ super() }}
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/jinja2/utils.py", line 84, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: there is no parent block called 'scripts'.
+2023-06-24 11:59:24,197 INFO: Microblog startup [in /Users/remydlc/workspace/python/softball_stat/app/__init__.py:58]
