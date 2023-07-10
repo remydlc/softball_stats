@@ -31,6 +31,7 @@ class User(UserMixin, db.Model):
         backref=db.backref("followers", lazy="dynamic"),
         lazy="dynamic",
     )
+    language = db.Column(db.String(5))
 
     def follow(self, user):
         if not self.is_following(user):
